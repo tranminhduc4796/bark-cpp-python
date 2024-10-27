@@ -26,6 +26,11 @@ if (BARK_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
+if (MSVC)
+    set_target_properties(bark PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+    set_target_properties(encodec PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 target_link_libraries(${BARK_LIB} PUBLIC ggml encodec)
 target_include_directories(${BARK_LIB} PUBLIC .)
 target_compile_features(${BARK_LIB} PUBLIC cxx_std_11)

@@ -1,6 +1,6 @@
 """Internal module use at your own risk
 
-This module provides a minimal interface for working with ggml tensors from llama-cpp-python
+This module provides a minimal interface for working with ggml tensors from bark-cpp-python
 """
 import os
 import pathlib

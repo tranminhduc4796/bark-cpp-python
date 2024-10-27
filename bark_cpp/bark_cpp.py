@@ -37,7 +37,7 @@ BARK_ENCODING_STEP_COARSE = 1
 BARK_ENCODING_STEP_FINE = 2
 
 
-# struct llama_context;
+# struct bark_context;
 bark_context_p = NewType("bark_context_p", int)
 bark_context_p_ctypes = ctypes.c_void_p
 

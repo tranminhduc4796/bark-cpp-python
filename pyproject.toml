@@ -30,8 +30,10 @@ wheel.packages = ["bark_cpp"]
 cmake.verbose = true
 cmake.minimum-version = "3.21"
 minimum-version = "0.5.1"
+sdist.exclude = [
+    "docs"
+]
 sdist.include = [
-    ".git", 
     "vendor/bark.cpp/*",
     "vendors_cmakes"
 ]
@@ -42,5 +44,3 @@ input = "bark_cpp/__init__.py"
 
 [project.urls]
 Homepage = "https://github.com/MDuc-ai/bark-cpp-python"
-
-[tool.pytest.ini_options]
