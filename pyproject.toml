@@ -46,22 +46,13 @@ input = "bark_cpp/__init__.py"
 Homepage = "https://github.com/MDuc-ai/bark-cpp-python"
 
 [tool.semantic_release]
-version_variable = "bark_cpp/__init__.py:__version__"
-assets = []
-build_command_env = []
-commit_parser = "angular"
-logging_use_named_masks = false
-major_on_zero = true
-allow_zero_version = true
-no_git_verify = false
+version_variables = ["bark_cpp/__init__.py:__version__"]
 tag_format = "v{version}"
 
 [tool.semantic_release.branches.main]
 match = "(main|master)"
-prerelease_token = "rc"
-prerelease = false
 
-[tool.semantic_release.changelog]
+[tool.semantic_release.default_templates.changelog]
 changelog_file = "CHANGELOG.md"
 mode = "init"
 
