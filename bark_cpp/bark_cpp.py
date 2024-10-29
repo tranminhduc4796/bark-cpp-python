@@ -37,6 +37,37 @@ BARK_ENCODING_STEP_COARSE = 1
 BARK_ENCODING_STEP_FINE = 2
 
 
+# enum ggml_ftype {
+#     GGML_FTYPE_UNKNOWN     = -1,
+#     GGML_FTYPE_ALL_F32     = 0,
+#     GGML_FTYPE_MOSTLY_F16  = 1,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q4_0 = 2,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q4_1 = 3,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q4_1_SOME_F16 = 4, // tok_embeddings.weight and output.weight are F16
+#     GGML_FTYPE_MOSTLY_Q8_0 = 7,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q5_0 = 8,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q5_1 = 9,  // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q2_K = 10, // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q3_K = 11, // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q4_K = 12, // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q5_K = 13, // except 1d tensors
+#     GGML_FTYPE_MOSTLY_Q6_K = 14, // except 1d tensors
+# };
+GGML_FTYPE_UNKNOWN     = -1
+GGML_FTYPE_ALL_F32     = 0
+GGML_FTYPE_MOSTLY_F16  = 1 
+GGML_FTYPE_MOSTLY_Q4_0 = 2 
+GGML_FTYPE_MOSTLY_Q4_1 = 3  
+GGML_FTYPE_MOSTLY_Q4_1_SOME_F16 = 4
+GGML_FTYPE_MOSTLY_Q8_0 = 7  
+GGML_FTYPE_MOSTLY_Q5_0 = 8  
+GGML_FTYPE_MOSTLY_Q5_1 = 9  
+GGML_FTYPE_MOSTLY_Q2_K = 10 
+GGML_FTYPE_MOSTLY_Q3_K = 11 
+GGML_FTYPE_MOSTLY_Q4_K = 12 
+GGML_FTYPE_MOSTLY_Q5_K = 13 
+GGML_FTYPE_MOSTLY_Q6_K = 14 
+
 # struct bark_context;
 bark_context_p = NewType("bark_context_p", int)
 bark_context_p_ctypes = ctypes.c_void_p
@@ -129,4 +160,13 @@ def bark_get_load_time(bctx: bark_context_p) -> int:
 # int64_t bark_get_eval_time(struct bark_context *bctx);
 @ctypes_function("bark_get_eval_time", [bark_context_p_ctypes], ctypes.c_int64)
 def bark_get_eval_time(bctx: bark_context_p) -> int:
+    ...
+
+
+# bool bark_model_quantize(
+#     const char *fname_inp,
+#     const char *fname_out,
+#     enum ggml_ftype ftype);
+@ctypes_function("bark_model_quantize", [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_int], ctypes.c_bool)
+def bark_model_quantize(fname_inp: bytes, fname_out: bytes, ftype: int) -> bool:
     ...

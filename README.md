@@ -71,6 +71,7 @@ Evaluated time: 47.49s
 ```
 [output.webm](https://github.com/user-attachments/assets/5e1ca97c-f81f-4bc2-8118-41b007e7c33e)
 
+
 ## 🔧 Installation
 
 ### Pip
@@ -107,7 +108,26 @@ conda install -c conda-forge gcc
 </details>
 
 
-## High-level Python API
+## 🐕 Usage
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Download the Bark checkpoints and vocabulary
+python3 download_weights.py --out-dir ./models --models bark-small bark
+
+# Convert the model to ggml format
+python3 convert.py --dir-model ./models/bark-small --use-f16
+
+# Quantize model (Optional), must enable --use-f16 in the above command
+python quantize.py ./models/bark-small/ggml_weights.bin ./models/bark-small/ggml_weights_q4_1.bin q4_1
+
+# Run the demo
+python demo.py ./models/bark-small/ggml_weights.bin -p "Hi, I am Bark. Nice to meet you" -t 8 --dest output.wav
+```
+
+
+## 🐍 High-level Python API
 ```python
 args = parse_arguments()
 

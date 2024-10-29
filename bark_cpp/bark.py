@@ -71,7 +71,7 @@ class BarkContext:
             ctypes.Array[c_float]: The audio data.
         """
         return bark_cpp.bark_get_audio_data(self.ctx)
-    
+
     def get_audio_data_size(self):
         """
         Gets the size of the audio data from the bark context.
@@ -147,28 +147,32 @@ class Bark:
 
     def close(self):
         self._stack.close()
-        
-    
+
     def generate_audio(self, prompt: str, n_threads: int = 1) -> npt.NDArray[np.float32]:
         assert self._ctx is not None
-        
-        is_success = self._ctx.generate_audio(prompt.encode('utf-8'), n_threads)
+
+        is_success = self._ctx.generate_audio(
+            prompt.encode('utf-8'), n_threads)
         if not is_success:
             raise RuntimeError("Failed to generate audio")
         array_size = self._ctx.get_audio_data_size()
         audio_ptr = self._ctx.get_audio_data()
         audio_arr = np.ctypeslib.as_array(audio_ptr, shape=(array_size,))
         return audio_arr
-    
+
     def get_load_time(self) -> int:
         assert self._ctx is not None
         return self._ctx.get_load_time()
-    
+
     def get_eval_time(self) -> int:
         assert self._ctx is not None
         return self._ctx.get_eval_time()
-    
+
     @staticmethod
     def write_wav(filename: str, audio_arr: npt.NDArray[np.float32]):
         SAMPLE_RATE = 24000
         write_wav(filename, SAMPLE_RATE, audio_arr)
+
+    @staticmethod
+    def quantize_model(in_model_fname: str, out_model_fname: str, ftype: int) -> bool:
+        return bark_cpp.bark_model_quantize(in_model_fname.encode(), out_model_fname.encode(), ftype)

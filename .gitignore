@@ -167,3 +167,6 @@ bark_cpp/lib
 
 # VSCode
 .vscode
+
+# Model storage
+models
