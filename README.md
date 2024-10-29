@@ -19,7 +19,7 @@ Inpsired by [llama-cpp-python](https://github.com/abetlen/llama-cpp-python), thi
 ## 🚀 Demo
 This demo is on `AMD Ryzen 5 5600H`, `Ubuntu 20.04`
 ```bash
-$ python demo.py /home/ductm/Work/bark.cpp/models/bark-small/ggml_weights_q4_1.bin -p "Hi, I am Bark. Nice to meet you" -t 8 --dest output.wav
+$ python demo.py ./models/bark-small/ggml_weights_q4_1.bin -p "Hi, I am Bark. Nice to meet you" -t 8 --dest output.wav
 
                  ___       _      ___     __  ___
  /\__/\  woof   |    \    / \    |    \  |  |/  /
@@ -97,7 +97,7 @@ pip install .
 #### GLIBCXX_3.4.32 not found
 If you meet this error when `import bark_cpp`:
 ```bash
-RuntimeError: Failed to load shared library '/home/ductm/miniconda3/envs/install_bark/lib/python3.10/site-packages/bark_cpp/lib/libbark.so': /home/ductm/miniconda3/envs/install_bark/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.32' not found (required by /home/ductm/miniconda3/envs/install_bark/lib/python3.10/site-packages/bark_cpp/lib/libencodec.so)
+RuntimeError: Failed to load shared library '~/miniconda3/envs/bark_cpp/lib/python3.10/site-packages/bark_cpp/lib/libbark.so': ~/miniconda3/envs/bark_cpp/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.32' not found (required by ~/miniconda3/envs/bark_cpp/lib/python3.10/site-packages/bark_cpp/lib/libencodec.so)
 
 ```
 Install the latest gcc with:
