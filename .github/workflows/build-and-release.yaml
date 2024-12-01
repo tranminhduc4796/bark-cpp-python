@@ -18,7 +18,7 @@ jobs:
       # Used to host cibuildwheel
       - uses: actions/setup-python@v5
 
-      - uses: pypa/cibuildwheel@v2.21.3
+      - uses: pypa/cibuildwheel@v2.22.0
         env:
           # disable repair because auditwheel not support on Ctypes packages
           CIBW_REPAIR_WHEEL_COMMAND: ""
